@@ -1,0 +1,21 @@
+{
+  "name": "youtrack-app",
+  "title": "YouTrack App",
+  "description": "The app contains a list of available projects and a toggle that allows the user to enable or disable a boolean flag. This flag is persisted on the YouTrack Server backend.",
+  "$schema": "https://json.schemastore.org/youtrack-app.json",
+  "vendor": {
+    "name": "Stanislav Opeida",
+    "url": "https://github.com/stanislavopeida/youtrack-app"
+  },
+  "icon": "icon.svg",
+  "widgets": [
+    {
+      "key": "widget",
+      "name": "Widget",
+      "indexPath": "widget/index.html",
+      "extensionPoint": "MAIN_MENU_ITEM",
+      "iconPath": "widget/widget-icon.svg",
+      "description": "This is a widget."
+    }
+  ]
+}
