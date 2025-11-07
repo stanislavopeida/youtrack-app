@@ -11,11 +11,11 @@
   "widgets": [
     {
       "key": "widget",
-      "name": "Widget",
+      "name": "Available Projects",
       "indexPath": "widget/index.html",
       "extensionPoint": "MAIN_MENU_ITEM",
       "iconPath": "widget/widget-icon.svg",
-      "description": "This is a widget."
+      "description": "This widget lists available projects and includes a toggle that persists a flag on the YouTrack Server."
     }
   ]
 }
