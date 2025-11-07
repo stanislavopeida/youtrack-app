@@ -3,4 +3,49 @@
   flex-direction: column;
   gap: calc(var(--ring-unit) * 2);
   margin: calc(var(--ring-unit) / 2);
+  min-width: 720px;
+}
+
+.contentWrapper {
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 calc(var(--ring-unit) * 4);
+}
+
+.projectsList {
+  display: block;
+  margin-top: calc(var(--ring-unit) * 2);
+}
+
+.projectsListItem + .projectsListItem {
+  margin-top: calc(var(--ring-unit) * 2);
+}
+
+.projectInfo {
+  min-width: 0;
+}
+
+.projectHeader {
+  display: flex;
+  gap: var(--ring-unit);
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.projectDescription {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTeam {
+  min-width: 0;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectsActionsItem + .projectsActionsItem {
+  margin-left: calc(var(--ring-unit));
 }
