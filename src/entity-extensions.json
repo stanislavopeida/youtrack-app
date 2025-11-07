@@ -1,0 +1,11 @@
+{
+  "entityTypeExtensions": [
+    {
+      "entityType": "User",
+      "properties": {
+        "flag": { "type": "boolean" },
+        "pageSize": { "type": "integer" }
+      }
+    }
+  ]
+}
