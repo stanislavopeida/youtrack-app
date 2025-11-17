@@ -18,7 +18,7 @@ type ProjectsListProps = {
   setPageSize: (size: number) => void;
 };
 
-const ProjectsListComponent = ({
+export const ProjectsList = ({
   projects,
   currentPage,
   setCurrentPage,
@@ -111,5 +111,3 @@ const ProjectsListComponent = ({
     </Row>
   </Grid>
 );
-
-export const ProjectsList = memo(ProjectsListComponent);

@@ -25,8 +25,17 @@ export const App = () => {
     if (!pageSize) {
       return;
     }
+
     const projects = await readProjects((currentPage - 1) * pageSize, pageSize);
-    setProjects(projects);
+    setProjects((previousProjects) => {
+      const areEqual =
+        previousProjects.length === projects.length &&
+        previousProjects.every(
+          (project, index) => project.id === projects[index].id
+        );
+
+      return areEqual ? previousProjects : projects;
+    });
   }, [currentPage, pageSize]);
 
   // If it is not needed to verify the value with the backend

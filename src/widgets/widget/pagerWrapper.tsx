@@ -23,17 +23,14 @@ export const PagerWrapper = ({
 }: ProjectsListProps) => {
   const [total, setTotal] = useState<number>(0);
 
-  const handlePageSizeChange = useCallback(
-    async (size: number) => {
-      const success = await updatePageSize(size);
-      if (!success) {
-        return;
-      }
+  const handlePageSizeChange = async (size: number) => {
+    const success = await updatePageSize(size);
+    if (!success) {
+      return;
+    }
 
-      setPageSize(size);
-    },
-    [setPageSize]
-  );
+    setPageSize(size);
+  };
 
   useEffect(() => {
     const loadTotal = async () => {

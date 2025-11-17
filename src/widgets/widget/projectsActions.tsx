@@ -25,33 +25,30 @@ const ProjectsActionsComponent = ({
     setEnabled(toggleState);
   }, []);
 
-  const handleToggle = useCallback(
-    async (event: ChangeEvent<HTMLInputElement>) => {
-      const success = await updateToggleState(event.target.checked);
-      if (!success) {
-        return;
-      }
+  const handleToggle = async (event: ChangeEvent<HTMLInputElement>) => {
+    const success = await updateToggleState(event.target.checked);
+    if (!success) {
+      return;
+    }
 
-      await loadToggleState();
-    },
-    [loadToggleState]
-  );
+    await loadToggleState();
+  };
 
   usePolling(loadToggleState);
 
-  const handleCreateMockProjects = useCallback(async () => {
+  const handleCreateMockProjects = async () => {
     await createMockProjects();
     if (onProjectsChanged) {
       await onProjectsChanged();
     }
-  }, [onProjectsChanged]);
+  };
 
-  const handleDeleteAllProjects = useCallback(async () => {
+  const handleDeleteAllProjects = async () => {
     await deleteAllProjects();
     if (onProjectsChanged) {
       await onProjectsChanged();
     }
-  }, [onProjectsChanged]);
+  };
 
   return (
     <Grid>
