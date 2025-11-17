@@ -2,6 +2,8 @@ import { readMyId } from "src/utils/users";
 import { createProject } from "src/utils/projects";
 import { Project } from "src/types/youtrackApi";
 
+const host = await YTApp.register();
+
 export const createMockProjects = async () => {
   const myId = await readMyId();
   if (!myId) {
@@ -11,6 +13,8 @@ export const createMockProjects = async () => {
   for (const { name, shortName, description } of mockProjects) {
     await createProject({ name, shortName, description }, myId);
   }
+
+  host.alert("Mock projects have been created!");
 };
 
 const mockProjects: Project[] = [

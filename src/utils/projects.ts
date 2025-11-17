@@ -74,4 +74,6 @@ export const deleteAllProjects = async () => {
       method: "DELETE",
     });
   }
+
+  host.alert("All projects have been deleted!");
 };
