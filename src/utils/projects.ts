@@ -42,7 +42,7 @@ export const readProjectsIds = async () => {
     const newProjectsIds = response.map((project) => project.id ?? "");
     return await readProjectsIdsRec(
       skip + PROJECTS_BATCH_SIZE,
-      top + PROJECTS_BATCH_SIZE,
+      top,
       projectIds.concat(newProjectsIds)
     );
   };
