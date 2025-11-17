@@ -32,14 +32,12 @@ export const PagerWrapper = ({
     setPageSize(size);
   };
 
-  useEffect(() => {
-    const loadTotal = async () => {
-      const projectIds = await readProjectsIds();
-      setTotal(projectIds.length);
-    };
-
-    loadTotal();
+  const loadTotal = useCallback(async () => {
+    const projectIds = await readProjectsIds();
+    setTotal(projectIds.length);
   }, [projects]);
+
+  usePolling(loadTotal);
 
   return (
     <Pager
