@@ -5,13 +5,18 @@ type UsePollingOptions = {
   enabled?: boolean;
 };
 
+const DEFAULT_POLLING_INTERVAL = 2000;
+
 export const usePolling = (
   poller: () => Promise<void>,
-  { interval = 2000, enabled = true }: UsePollingOptions = {}
+  {
+    interval = DEFAULT_POLLING_INTERVAL,
+    enabled = true,
+  }: UsePollingOptions = {}
 ) => {
   useEffect(() => {
     if (!enabled) {
-      return;
+      return () => {};
     }
 
     let timeoutId: ReturnType<typeof setTimeout>;

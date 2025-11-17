@@ -11,9 +11,9 @@ import { createMockProjects } from "src/utils/mockProjects";
 import { deleteAllProjects } from "src/utils/projects";
 import { readToggleState, updateToggleState } from "src/utils/toggle";
 
-interface ProjectsActionsProps {
-  onProjectsChanged?: () => Promise<void>;
-}
+type ProjectsActionsProps = {
+  onProjectsChanged: () => Promise<void>;
+};
 
 const ProjectsActionsComponent = ({
   onProjectsChanged,
@@ -21,8 +21,8 @@ const ProjectsActionsComponent = ({
   const [enabled, setEnabled] = useState(false);
 
   const loadToggleState = useCallback(async () => {
-    const toggleState = await readToggleState();
-    setEnabled(toggleState);
+    const storedToggleState = await readToggleState();
+    setEnabled(storedToggleState);
   }, []);
 
   const handleToggle = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -38,16 +38,12 @@ const ProjectsActionsComponent = ({
 
   const handleCreateMockProjects = async () => {
     await createMockProjects();
-    if (onProjectsChanged) {
-      await onProjectsChanged();
-    }
+    await onProjectsChanged();
   };
 
   const handleDeleteAllProjects = async () => {
     await deleteAllProjects();
-    if (onProjectsChanged) {
-      await onProjectsChanged();
-    }
+    await onProjectsChanged();
   };
 
   return (

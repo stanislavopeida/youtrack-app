@@ -1,17 +1,18 @@
-import { useCallback, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 
 import Pager from "@jetbrains/ring-ui-built/components/pager/pager";
 
 import { readProjectsIds } from "src/utils/projects";
 import { Project } from "src/types/youtrackApi";
 import { updatePageSize } from "src/utils/pager";
+import { usePolling } from "src/hooks/usePolling";
 
-type ProjectsListProps = {
+type PagerWrapperProps = {
   projects: Project[];
   currentPage: number;
-  setCurrentPage: (page: number) => void;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
   pageSize: number;
-  setPageSize: (size: number) => void;
+  setPageSize: Dispatch<SetStateAction<number | null>>;
 };
 
 export const PagerWrapper = ({
@@ -20,7 +21,7 @@ export const PagerWrapper = ({
   setCurrentPage,
   pageSize,
   setPageSize,
-}: ProjectsListProps) => {
+}: PagerWrapperProps) => {
   const [total, setTotal] = useState<number>(0);
 
   const handlePageSizeChange = async (size: number) => {
@@ -33,8 +34,8 @@ export const PagerWrapper = ({
   };
 
   const loadTotal = useCallback(async () => {
-    const projectIds = await readProjectsIds();
-    setTotal(projectIds.length);
+    const storedProjectIds = await readProjectsIds();
+    setTotal(storedProjectIds.length);
   }, [projects]);
 
   usePolling(loadTotal);
@@ -45,8 +46,8 @@ export const PagerWrapper = ({
       currentPage={currentPage}
       pageSize={pageSize}
       pageSizes={[3, 5, 10]}
-      onPageChange={(currentPage) => setCurrentPage(currentPage)}
-      onPageSizeChange={(size) => handlePageSizeChange(size)}
+      onPageChange={(newCurrentPage) => setCurrentPage(newCurrentPage)}
+      onPageSizeChange={(newPageSize) => handlePageSizeChange(newPageSize)}
     />
   );
 };

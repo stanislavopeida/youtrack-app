@@ -26,15 +26,18 @@ export const App = () => {
       return;
     }
 
-    const projects = await readProjects((currentPage - 1) * pageSize, pageSize);
+    const storedProjects = await readProjects(
+      (currentPage - 1) * pageSize,
+      pageSize
+    );
     setProjects((previousProjects) => {
       const areEqual =
-        previousProjects.length === projects.length &&
+        previousProjects.length === storedProjects.length &&
         previousProjects.every(
-          (project, index) => project.id === projects[index].id
+          (project, index) => project.id === storedProjects[index].id
         );
 
-      return areEqual ? previousProjects : projects;
+      return areEqual ? previousProjects : storedProjects;
     });
   }, [currentPage, pageSize]);
 

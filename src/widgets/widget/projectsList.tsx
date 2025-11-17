@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import Avatar from "@jetbrains/ring-ui-built/components/avatar/avatar";
 import UserCardTooltip from "@jetbrains/ring-ui-built/components/user-card/tooltip";
@@ -13,9 +13,9 @@ import { PagerWrapper } from "src/widgets/widget/pagerWrapper";
 type ProjectsListProps = {
   projects: Project[];
   currentPage: number;
-  setCurrentPage: (page: number) => void;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
   pageSize: number;
-  setPageSize: (size: number) => void;
+  setPageSize: Dispatch<SetStateAction<number | null>>;
 };
 
 export const ProjectsList = ({

@@ -11,7 +11,7 @@ type MarkdownRenderOptions = {
   containerClassName?: string;
 };
 
-const markdownItRenderer = MarkdownIt("commonmark", {
+const markdownItRenderer = new MarkdownIt("commonmark", {
   html: false,
   highlight(str: string, lang: string) {
     if (lang && highlightJs.getLanguage(lang)) {
